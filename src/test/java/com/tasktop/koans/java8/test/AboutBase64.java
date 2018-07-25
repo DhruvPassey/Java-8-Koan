@@ -34,14 +34,16 @@ public class AboutBase64 {
 	public void encodeToBase64() {
 		byte[] encoded = Base64.getEncoder().encode("my-string".getBytes());
 
-		String myString = new String(new byte[] {}); // FIXME: create the string using the encoded bytes
+		String myString = new String(encoded); // FIXME: create the string using the encoded bytes
 		assertEquals("bXktc3RyaW5n", myString);
 	}
 
 	@Test
 	public void decodeFromBase64() {
 		// FIXME: Where do we get an encoded string that means "my-string"? One hint... look up!
-		byte[] decoded = Base64.getDecoder().decode("".getBytes());
+		byte[] encoded = Base64.getEncoder().encode("my-string".getBytes());
+		String myString1 = new String(encoded);
+		byte[] decoded = Base64.getDecoder().decode(myString1);
 
 		String myString = new String(decoded);
 		assertEquals("my-string", myString);
